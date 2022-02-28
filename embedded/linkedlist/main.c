@@ -298,3 +298,5 @@ int main()
   cleanup();
   return 0;
 }
+
+// https://stackoverflow.com/questions/55233747/passing-a-linked-list-over-a-socket
