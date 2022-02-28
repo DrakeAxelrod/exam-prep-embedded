@@ -12,12 +12,12 @@ CFLAGS=-Wall -g
 #   if I want to link in libraries (libx.so or libx.a) I use the -llibname 
 #   option, something like (this will link in libmylib.so and libm.so:
 LIBS=-lws2_32
-FILE=server # change this to be client if you wanna build client
+FILE=server_struct # change this to be client if you wanna build client
 
 .PHONY: build run clean
 
 build:
-	$(CC) $(CFLAGS) $(FILE).c -o $(FILE) $(LIBS)
+	$(CC) $(CFLAGS) server_struct.c -o server_struct $(LIBS)
 
 run:
 	./$(FILE).exe
