@@ -74,7 +74,7 @@ void deleteTree(Node *root) {
   if (root) {                         // if the node is not null
     deleteTree(root->left);           // go down a level (and add to stack)
     deleteTree(root->right);          // go down a level (and add to stack)
-    free(root)                        // we are at the end start freeing and popping off the stack
+    free(root);                        // we are at the end start freeing and popping off the stack
   }
 }
 ```
