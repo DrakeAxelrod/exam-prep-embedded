@@ -5,6 +5,7 @@
 # Lecture 1
 
 # Verification, Validation, and Defects
+--- 
  Most relevant for this course: *dependability*
 - Ability to consistently offer correct functionality, even under unforeseen or unsafe conditions.
 
@@ -15,7 +16,6 @@
   - Ability to protect information from unauthorized access while providing service to authorized users.
 - Scalability
   - Ability to “grow” the system to process more concurrent requests.
-
 - Availability
   - Ability to carry out a task when needed, to minimize “downtime”, and to recover from failures.
 - Modifiability
@@ -74,6 +74,7 @@ Usually source code and requirement specification. But also...
 - Verdicts on correctness.
 
 ### Software Validation
+---
 > “Are we building the right product?”
 
 The process of proving that the software meets the customer’s true requirements, needs, and expectations.
@@ -86,6 +87,7 @@ The process of proving that the software meets the customer’s true requirement
 
 
 ## Required Level of V&V
+---
 
 ### Depends on:
 - Software Purpose: The more critical, the more important that it is reliable.
@@ -102,6 +104,7 @@ The process of proving that the software meets the customer’s true requirement
 
 
 ## Static Verification
+---
 > Analysis of system artifacts to discover problems.
 - Proofs: Posing hypotheses and making arguments using specifications, models, etc.
 - Inspections: Manual “sanity check” on artifacts (e.g., source code), searching for issues.
@@ -112,6 +115,7 @@ The process of proving that the software meets the customer’s true requirement
 - Inspection can assess quality attributes such as maintainability, portability, code style, program inefficiencies, etc.
 
 ## Dynamic Verification
+---
 - Exercising and observing the system to argue that it meets the requirements.
 - Testing: Formulating sets of input to demonstrate requirement satisfaction or find faults.
 - Fuzzing: Generating semi-random input to locate crashes and other anomalies.
@@ -168,6 +172,8 @@ The process of proving that the software meets the customer’s true requirement
   - Share information within your organization.
 
 ## What was learned.
+---
+
 - Quality attributes describe desired properties of thesystem under development.
   - Dependability, scalability, performance, availability, security, maintainability, testability, ...
 - Developers must prioritize quality attributes and design a system that meets chosen thresholds.
@@ -182,6 +188,7 @@ The process of proving that the software meets the customer’s true requirement
 
 
 # Software Quality
+---
 - We all want high-quality software.
   - We don’t all agree on the definition of quality.
 - Quality encompasses both what the system does and how it does it.
@@ -190,15 +197,17 @@ The process of proving that the software meets the customer’s true requirement
 - Quality is hard to measure and assess objectively.
 
 ## Quality attribute focus
+---
 - Dependability
 - Availability
 - Performance
 - Scalability
 - Security
 
-
-### Dependability
-When is Software Ready for Release?
+---
+## Dependability
+---
+### When is Software Ready for Release?
 - Provide evidence that the system is dependable.
 - The goal of dependability is to establish four thingsabout the system:
   - That it is correct.
@@ -247,8 +256,116 @@ When is Software Ready for Release?
         - Look at how a program could fail and handle those situations.
       - Cannot be proved, but is a goal to aspire to.
 
+![dependability properet relations](./media/l2.png)
+
+### Measuring Dependability
+- Must establish criteria for when the system is dependable enough to release.
+- Correctness hard to prove conclusively.
+- Robustness/Safety important, but do not demonstrate functional correctness.
+- Reliability is the basis for arguing dependability.
+- Can be measured.
+- Can be demonstrated through testing.
+
+### What is Reliability?
+- Probability of failure-free operation for a specified time in a specified environment for a given purpose.
+  - Depends on system and type of user.
+- How well users think the system provides services they require.
+
+### Improving Reliability
+- Improved when faults in the most frequently-used parts of the software are removed.
+  - Removing X% of faults != X% improvement in reliability.
+    - In one study, removing 60% of faults led to 3% improvement.
+- Removing faults with serious consequences is the top priority.
+
+### Reliability is Measurable
+- Reliability can be defined and measured.
+- Reliability requirements can be specified:
+  - Non-functional requirements define number of failures that are acceptable during normal use or time in which system is allowed to be unavailable.
+  - Functional requirements define how the software avoids, detects, and tolerates failures.
+
+### How to Measure Reliability
+- Hardware metrics often aren’t suitable for software.
+  - Based on component failures and the need to repair or replace a component once it has failed.
+  - In hardware, the design is assumed to be correct.
+- Software failures are always design failures.
+  - Often, the system is available even though a failure has occurred.
+  - Metrics consider failure rates, uptime, and time between failures.
+
+---
 
 ### Availability
+
+---
+
+#### Metric 1: Availability
+- Measured as (uptime) / (total time observed)
+  - Takes repair and restart time into account.
+  - Does not consider incorrect computations.
+  - Only considers crashes/freezing.
+    - 0.9 = down for 144 minutes a day.
+    - 0.99 =14.4 minutes
+    - 0.999 = 84 seconds
+    - 0.9999 = 8.4 seconds
+
+- Improvement requires understanding nature of failures that arise.
+- Failures can be prevented, tolerated, removed, or forecasted.
+  - How are failures detected?
+  - How frequently do failures occur?
+  - What happens when a failure occurs?
+  - How long can the system be out of operation?
+  - When can failures occur safely?
+  - Can failures be prevented?
+  - What notifications are required when failure occurs?
+
+Availability Considerations
+- Time to repair is the time until the failure is no longer observable.
+  - Can be hard to define. Stuxnet caused problems for months. How does that impact availability?
+- Software can remain partially available more easily than hardware.
+- If code containing fault is executed, but system is able to recover, there was no failure.
+
+#### Metric 2: Probability of Failure on Demand (POFOD)
+- Likelihood that a request will result in a failure
+- (failures/requests over observed period)
+  - POFOD = 0.001 means that 1 out of 1000 requests fail.
+- Used in situations where a failure is serious.
+  - Independent of frequency of requests.
+  - 1/1000 failure rate sounds risky, but if one failure per lifetime, may be good.
+
+#### Metric 3: Rate of Occurrence of Fault (ROCOF)
+- Frequency of occurrence of unexpected behavior.
+- (number of failures / total time observed)
+  - ROCOF of 0.02 means 2 failures per 100 time units.
+  - Often given as “N failures per M seconds/minutes/hours”
+- Most appropriate metric when requests are made on a regular basis (such as a shop).
+
+#### Metric 4: Mean Time Between Failures (MTBF)
+- Average length of time between observed failures.
+  - Only considers time where system operating.
+  - Requires the timestamp of each failure and the timestamp of when the system resumed service.
+- Used for systems with long user sessions, where crashes can cause major issues.
+  - E.g., saving requires resource (disc/CPU/memory) consumption.
+
+### Probabilistic Availability
+- (alternate definition)
+- Probability that system will provide a service within
+required bounds over a specified time interval.
+  - Availability = MTBF / (MTBF + MTTR)
+    - MTBF: Mean time between failures.
+    - MTTR: Mean time to repair
+
+### Reliability Metrics
+- Availability: (uptime) / (total time observed)
+- POFOD: (failures/ requests over period)
+- ROCOF: (failures / total time observed)
+- MTBF: Average time between observed failures.
+- MTTR: Average time to recover from failure.
+
+------
+
+lecture 2 slide 25
+
+-----
+
 ### Performance
 ### Scalability
 ### Security
