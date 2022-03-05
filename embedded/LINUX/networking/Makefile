@@ -1,7 +1,7 @@
 # define the C compiler to use
 CC=gcc
 # define any directories containing header files other than /usr/include
-INCLUDES = -I$(CURDIR)/
+INCLUDES = -I"/home/draxel/Code/school/exam prep/embedded/LINUX/networking"
 # define any compile-time flags
 CFLAGS= -Wall -g
 # define library paths in addition to /usr/lib

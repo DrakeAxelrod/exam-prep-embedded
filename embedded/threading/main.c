@@ -39,7 +39,7 @@ int main()
   else
   {
       printf("It seems the CreateThread() is OK lol!\n");
-      
+
   }
   if (CloseHandle(hThread) != 0) {
       printf("Handle to thread closed successfully.\n");

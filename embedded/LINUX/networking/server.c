@@ -17,29 +17,20 @@
 #define PORT 8080
 
 void printErrnQuit(char *);
+void printPerson(Person *);
 
 int main()
 {
   // linked list stuff
   struct node_t *head = NULL;
-  Person *p1 = (Person *)malloc(sizeof(Person));
-  strcpy(p1->sName, "John");
-  strcpy(p1->sSurname, "Doe");
-  strcpy(p1->sPnr, "19930813073948");
-  strcpy(p1->sAddress, "John's street 12");
-  p1->iAge = 12;
-  Person *p2 = (Person *)malloc(sizeof(Person));
-  strcpy(p2->sName, "Jane");
-  strcpy(p2->sSurname, "Doe");
-  strcpy(p2->sPnr, "19930813073925");
-  strcpy(p2->sAddress, "John's street 12");
-  p2->iAge = 20;
-  InsertFirst(&head, p1);
-  InsertFirst(&head, p2);
-  printf("first: %d\n", head->person->iAge);
-  printf("second: %d\n", head->next->person->iAge);
-  deleteFirst(&head);
-  printf("first: %d\n", head->person->iAge);
+
+  InsertFirst(&head, "John", "Doe", "19930813073948", "John's street 12", 12);
+  printPerson(head->person);
+  // InsertFirst(&head, "Jane", "Doe", "19930813073454", "John's street 12", 20);
+  // printf("first: %d\n", head->person->iAge);
+  // printf("second: %d\n", head->next->person->iAge);
+  // deleteFirst(&head);
+  // printf("first: %d\n", head->person->iAge);
   // end
 
   int server_fd;                 // server file description
@@ -84,26 +75,75 @@ int main()
 
   // after the accepted connection we can start the communication
   // this part is based on the fact that we wait for the message from the
+  while(0) {
   if (recv(iSocket, strReadBuffer, sizeof(strReadBuffer), 0) < 0)
     printErrnQuit("receiving the message from the client");
 
   // Now, here is where it gets interesting
   // we received a series of bytes, which we can print:
-  printf("Message received: %s\n", strReadBuffer);
+  printf("Message received: %d\n", strReadBuffer);
+  }
+  // if (strcmp(strReadBuffer, "close")) {
+  //   exit(0);
+  // }
 
   // but we can also add the structure to it
-  struct_person *sMyPerson;
+  // struct_person *sMyPerson;
 
-  sMyPerson = (struct_person *)strReadBuffer;
+  // sMyPerson = (struct_person *)strReadBuffer;
+
+  // Person *sMyPerson;
+
+  // sMyPerson = (Person *)strReadBuffer;
 
   // and let's check what the name of the person is:
-  printf("Person's name: %s \n", sMyPerson->name);
-  printf("Person's address: %s \n", sMyPerson->address);
-  printf("Person's age: %d \n", sMyPerson->iAge);
-  exit(0);
+  // printf("Person's name: %s \n", sMyPerson->name);
+  // printf("Person's address: %s \n", sMyPerson->address);
+  // printf("Person's age: %d \n", sMyPerson->iAge);
+  // exit(0);
 }
 
-void printErrnQuit(char *str) {
+void printErrnQuit(char *str)
+{
   printf("Error: %s: %s. Exiting\n", str, strerror(errno));
   exit(1);
 }
+
+// int msgLoop(int connection) {
+//   char buff[1024];
+//   int n;
+//   read(connection, buff, sizeof(buff));
+//   while (0)
+//   {
+//     bzero(buff, 1024);
+//     int res = read(connection, buff, sizeof(buff));
+//     printf("Message received: %s\n", buff);
+//     bzero(buff, 1024);
+
+//     n = 0;
+//     // copy server message in the buffer
+//     char *msg = "hello world";
+//     for (int i = 0; i < 11; i++) {
+//       buff[i] = msg[i];
+//     }
+
+//     // and send that buffer to client
+//     write(connection, buff, sizeof(buff));
+
+//     if (strncmp("exit", buff, 4) == 0)
+//     {
+//       printf("Server Exit...\n");
+//       break;
+//     }
+//   }
+// }
+
+// void printPerson(Person *p)
+// {
+//   printf("===== Entry =====\n");
+//   printf("Name: %s %s\n", p->sName, p->sSurname);
+//   printf("Age: %d\n", p->iAge);
+//   printf("Personal Number: %s\n", p->sPnr);
+//   printf("Address: %s\n", p->sAddress);
+//   printf("=================\n");
+// }

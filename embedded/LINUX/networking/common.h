@@ -23,7 +23,10 @@ typedef struct node_t
   struct node_t *next;    // pointer to the next node in the list.
   Person *person; // Data Payload (person)
 };
+void InsertFirst(struct node_t **, char *, char *, char *, char *, int);
+void printPerson(Person *);
+void printList(struct node_t *);
 
-void InsertFirst(struct node_t **, Person*);
+// void InsertFirst(struct node_t **, Person *);
 
 #endif

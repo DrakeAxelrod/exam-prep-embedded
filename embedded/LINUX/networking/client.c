@@ -10,10 +10,19 @@
 
 #define PORT 8080
 
+char* numPpl = "1";
+
 void printErrnQuit(char *);
 
 int main()
 {
+  // linked list stuff
+  struct node_t *head = NULL;
+  InsertFirst(&head, "John", "Doe", "199306130739", "8759 Third Lane", 29);
+  InsertFirst(&head, "Jane", "Doe", "199108043464", "505 West Littleton Lane", 31);
+  InsertFirst(&head, "Mike", "Smith", "198902293945", "8487 Branch Street ", 33);
+  InsertFirst(&head, "Lisa", "Jacobs", "199509119037", "796 North St Paul Drive ", 27);
+  InsertFirst(&head, "Carl", "Green", "199001220495", "25 North Arlington Street", 32);
 
   int iSocket;
   struct sockaddr_in server_addr;
@@ -44,8 +53,19 @@ int main()
   printf("Connected with server successfully\n");
 
   // Send the message to server:
-  if (send(iSocket, &sPersonToSend, sizeof(sPersonToSend), 0) < 0)
-    printErrnQuit("unable to send message");
+  // if (send(iSocket, &sPersonToSend, sizeof(sPersonToSend), 0) < 0)
+  //   printErrnQuit("unable to send message");
+  struct node_t *ptr = head;
+  // start from the beginning
+  while(0) {
+    if (send(iSocket, numPpl, sizeof(numPpl), 0) < 0)
+      printErrnQuit("unable to send message");
+  }
+  // while (ptr != NULL) {
+  //   if (send(iSocket, &ptr->person, sizeof(ptr->person), 0) < 0)
+  //     printErrnQuit("unable to send message");
+  //   ptr = ptr->next;
+  // }
 
   close(iSocket);
 }
