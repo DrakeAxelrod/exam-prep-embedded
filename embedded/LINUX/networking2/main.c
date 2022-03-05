@@ -1,92 +1,109 @@
+
+/*** clientprog.c ****/
+
+/*** a stream socket client demo ***/
+
 #include <stdio.h>
+
 #include <stdlib.h>
-#include <string.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
+
 #include <unistd.h>
-// Create a Socket for server communication
-short SocketCreate(void)
-{
-  short hSocket;
-  printf("Create the socket\n");
-  hSocket = socket(AF_INET, SOCK_STREAM, 0);
-  return hSocket;
-}
-// try to connect with server
-int SocketConnect(int hSocket)
-{
-  int iRetval = -1;
-  int ServerPort = 90190;
-  struct sockaddr_in remote = {0};
-  remote.sin_addr.s_addr = inet_addr("127.0.0.1"); // Local Host
-  remote.sin_family = AF_INET;
-  remote.sin_port = htons(ServerPort);
-  iRetval = connect(hSocket, (struct sockaddr *)&remote, sizeof(struct sockaddr_in));
-  return iRetval;
-}
-// Send the data to the server and set the timeout of 20 seconds
-int SocketSend(int hSocket, char *Rqst, short lenRqst)
-{
-  int shortRetval = -1;
-  struct timeval tv;
-  tv.tv_sec = 20; /* 20 Secs Timeout */
-  tv.tv_usec = 0;
-  if (setsockopt(hSocket, SOL_SOCKET, SO_SNDTIMEO, (char *)&tv, sizeof(tv)) < 0)
-  {
-    printf("Time Out\n");
-    return -1;
-  }
-  shortRetval = send(hSocket, Rqst, lenRqst, 0);
-  return shortRetval;
-}
-// receive the data from the server
-int SocketReceive(int hSocket, char *Rsp, short RvcSize)
-{
-  int shortRetval = -1;
-  struct timeval tv;
-  tv.tv_sec = 20; /* 20 Secs Timeout */
-  tv.tv_usec = 0;
-  if (setsockopt(hSocket, SOL_SOCKET, SO_RCVTIMEO, (char *)&tv, sizeof(tv)) < 0)
-  {
-    printf("Time Out\n");
-    return -1;
-  }
-  shortRetval = recv(hSocket, Rsp, RvcSize, 0);
-  printf("Response %s\n", Rsp);
-  return shortRetval;
-}
-// main driver program
+
+#include <errno.h>
+
+#include <string.h>
+
+#include <netdb.h>
+
+#include <sys/types.h>
+
+#include <netinet/in.h>
+
+#include <sys/socket.h>
+
+// the port client will be connecting to
+
+#define PORT 8080
+
+// max number of bytes we can get at once
+
+#define MAXDATASIZE 300
+
 int main(int argc, char *argv[])
+
 {
-  int hSocket, read_size;
-  struct sockaddr_in server;
-  char SendToServer[100] = {0};
-  char server_reply[200] = {0};
-  // Create socket
-  hSocket = SocketCreate();
-  if (hSocket == -1)
+
+  int sockfd, numbytes;
+
+  char buf[MAXDATASIZE];
+
+  // connector’s address information
+
+  struct sockaddr_in their_addr;
+
+
+  if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
+
   {
-    printf("Could not create socket\n");
-    return 1;
+
+    perror("socket()");
+
+    exit(1);
   }
-  printf("Socket is created\n");
-  // Connect to remote server
-  if (SocketConnect(hSocket) < 0)
+
+  else
+
+    printf("Client-The socket() sockfd is OK...\n");
+
+  // host byte order
+
+  their_addr.sin_family = AF_INET;
+
+  // short, network byte order
+
+  printf("Server-Using %s and port %d...\n", argv[1], PORT);
+
+  their_addr.sin_port = htons(PORT);
+
+  their_addr.sin_addr.s_addr = INADDR_ANY;
+
+  // zero the rest of the struct
+
+  memset(&(their_addr.sin_zero), '\0', 8);
+
+  if (connect(sockfd, (struct sockaddr *)&their_addr, sizeof(struct sockaddr)) == -1)
+
   {
-    perror("connect failed.\n");
-    return 1;
+
+    perror("connect()");
+
+    exit(1);
   }
-  printf("Sucessfully conected with server\n");
-  printf("Enter the Message: ");
-  gets(SendToServer);
-  // Send data to the server
-  SocketSend(hSocket, SendToServer, strlen(SendToServer));
-  // Received the data from the server
-  read_size = SocketReceive(hSocket, server_reply, 200);
-  printf("Server Response : %s\n\n", server_reply);
-  close(hSocket);
-  shutdown(hSocket, 0);
-  shutdown(hSocket, 1);
-  shutdown(hSocket, 2);
+
+  else
+
+    printf("Client-The connect() is OK...\n");
+
+  if ((numbytes = recv(sockfd, buf, MAXDATASIZE - 1, 0)) == -1)
+
+  {
+
+    perror("recv()");
+
+    exit(1);
+  }
+
+  else
+
+    printf("Client-The recv() is OK...\n");
+
+  buf[numbytes] = '\0';
+
+  printf("Client-Received: %s", buf);
+
+  printf("Client-Closing sockfd\n");
+
+  close(sockfd);
+
   return 0;
 }
