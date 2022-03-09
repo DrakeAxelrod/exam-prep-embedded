@@ -23,6 +23,7 @@ int IsPrime(int n)
       return 1;
     }
   }
+  return 0;
 }
 
 // A normal C function that is executed as a thread
