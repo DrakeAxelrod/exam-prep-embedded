@@ -2,14 +2,13 @@
 
 
 
-void failmut(char * s)
+void failmut(char *s)
 {
   *s = "hello world";
 }
 
-void mut(char ** s)
+void mut(char **s)
 {
-  char * str = malloc
   **s = "hello world";
 }
 
