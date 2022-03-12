@@ -583,3 +583,73 @@ search string.
 ## Confirming a theory
 
 ## Complexity and Technical Debt
+
+If you simply consider brute-force algorithms and their computational complexities (mostly intuitive, straightforward, easy, and obvious) in comparison to their more efficient and advanced counterparts (less intuitive and obvious) it should be easy to see the dilemma in building software. Oftentimes the most efficient way of building a software system isn’t the most intuitive or obvious choice.
+
+Engineering teams are often required to deliver new products and features very quickly and so it is easy to choose a coding solution that is simple and quick. In many cases, though, there may be a more advanced and time-consuming option that would be better suited for the task, and save unnecessary maintenance costs down the road.
+
+> Can technical debt be calculated?
+There are many metrics to consider when determining code quality. Some of these include complexities (cyclomatic and cognitive), lines of code, arity, maintainability index, Halstead complexity measures, depth of inheritance, afferent and efferent couplings, nesting depth, time to write n lines, etc. Technical debt computation is important, but it can be confusing to know how much work is needed to eliminate with so many contributing factors. However, there is a simple solution. By expressing the problem correctly, an easy solution can be determined:
+
+A simple ratio can show the technical debt as a relationship between the cost to fix the software system (Remediation Cost) and the cost of developing it (Development Cost). The term used to describe this equation is the Technical Debt Ratio (TDR):
+
+Technical Debt Ratio = (Remediation Cost / Development Cost) x 100%
+
+## Robust Equivalence-Class Testing
+
+## All-Uses Coverage Criterion
+
+## equivalence class testing
+
+## minimum number of required test cases
+1) Weak normal equivalence class testing
+2) Weak robust equivalence class testing
+3) Strong normal equivalence class testing
+4) Strong robust equivalence class testing
+
+## classification tree & decision table
+
+## control-flow graph
+
+## Calculate all prime paths of the control-flow graph
+
+## A/B testing
+
+## mutation testing
+- Relational operator replacement (ror)
+- Arithmetic operator replacement (aor)
+- Constant for constant replacement (crp)
+## concept of capture and recapture, used in code inspections.
+
+## test-driven development process.
+
+## strengthes & weaknesses of test-driven development.
+
+## goal-question-metric approach
+
+## GQM-graph
+
+## inspection procedure according to Fagan (1976)
+
+## DU pairs
+
+## Quality Scenarios
+
+## Structural Testing
+
+## Data Flow Testing
+
+## random ascent
+
+# unit testing, system testing, GUI testing, exploratory testing, or acceptance testing
+
+## Finite State Verification
+Temporal Operators: A quick reference list.
+● G p: p holds globally at every state on the path
+● F p: p holds at some state on the path
+● X p: p holds at the next (second) state on the path
+● p U q: q holds at some state on the path and p holds at every state before the first state at which q holds.
+● A: for all paths from a state, used in CTL as a modifier for the above properties (for example, AG p)
+● E: for some path from a state, used in CTL as a modifier for the above properties (for example, EF p)
+
+
