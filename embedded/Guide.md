@@ -1,18 +1,105 @@
 # Embedded
 
-## C
+# C
 
-### Structs
+## Libraries
+### stdio.h -> input/output
+### unistd.h -> POSIX operating system API (sleep)
+### assert.h -> void assert(int expression) This is actually a macro and not a function, which can be used to add diagnostics in your C program.
+### stdlib.h:
+
+---
+
+- int atoi(const char *str)                -> Converts the string pointed to, by the argument str to an integer (type int).
+- void *calloc(size_t nitems, size_t size) -> Allocates the requested memory and returns a pointer to it.
+- void *malloc(size_t size)                -> Allocates the requested memory and returns a pointer to it.
+- void *realloc(void *ptr, size_t size)    -> Attempts to resize the memory block pointed to by ptr that was previously allocated with a call to malloc or calloc.
+- void free(void *ptr)                     -> Deallocates the memory previously allocated by a call to calloc, malloc, or realloc.
+- void exit(int status)                    -> Causes the program to terminate normally.
+- void srand(unsigned int seed)            -> This function seeds the random number generator used by the function rand.
+- int rand(void)                           -> Returns a pseudo-random number in the range of 0 to RAND_MAX.
+
+- void *bsearch(const void *key, const void *base, size_t nitems, size_t size, int (*compar)(const void *, const void *)) -> Performs a binary search.
+- void qsort(void *base, size_t nitems, size_t size, int (*compar)(const void *, const void*))  -> Sorts an array.
+- int abs(int x)                           -> Returns the absolute value of x.
+
+### math.h:
+
+---
+
+- double exp(double x)                     ->  Returns the value of e raised to the xth power.
+- double log(double x)                     ->  Returns the natural logarithm (base-e logarithm) of x.
+- double log10(double x)                   ->  Returns the common logarithm (base-10 logarithm) of x.
+- double pow(double x, double y)           ->  Returns x raised to the power of y
+- double sqrt(double x)                    ->  Returns the square root of x.
+- double fabs(double x)                    ->  Returns the absolute value of x
+- double fmod(double x, double y)          ->  Returns the remainder of x divided by y.
+
+### string.h:
+
+---
+
+- int memcmp(const void *str1, const void *str2, size_t n)     ->  Compares the first n bytes of str1 and str2.
+- void *memcpy(void *dest, const void *src, size_t n)          ->  Copies n characters from src to dest.
+- size_t strlen(const char *str)                               ->  Computes the length of the string str up to but not including the terminating null character.
+- int strcmp(const char *str1, const char *str2)               ->  Compares the string pointed to, by str1 to the string pointed to by str2.
+- int strncmp(const char *str1, const char *str2, size_t n)    ->  Compares at most the first n bytes of str1 and str2.
+- char *strcpy(char *dest, const char *src)                    ->  Copies the string pointed to, by src to dest.
+- char *strtok(char *str, const char *delim)                   ->  Breaks string str into a series of tokens separated by delim.
+
+### ctype.h:
+
+---
+
+- int isalnum()                        -> This function checks whether the passed character is alphanumeric.
+- int isalpha(int c)                   -> This function checks whether the passed character is alphabetic.
+- int isdigit(int c)                   -> This function checks whether the passed character is decimal digit.
+- int islower(int c)                   -> This function checks whether the passed character is lowercase letter.
+- int isspace(int c)                   -> This function checks whether the passed character is white-space.
+- int isupper(int c)                   -> This function checks whether the passed character is an uppercase letter.
+- int isxdigit(int c)                  -> This function checks whether the passed character is a hexadecimal digit.
+- int tolower(int c)                   -> This function converts uppercase letters to lowercase.
+- int toupper(int c)                   -> This function converts lowercase letters to uppercase.
+
+### errno.h:
+
+---
+
+- extern int errno   -> This is the macro set by system calls and some library functions in the event of an error to indicate what went wrong.
+
+### pthread.h: (cc -lpthread file.c)
+
+---
+
+- pthread_t pthread_self(void) used to get the thread id of the current thread.
+- int pthread_detach(pthread_t thread) used to detach a thread. A detached thread does not require a thread to join on terminating. The resources of the thread are automatically released after terminating if the thread is detached.
+- pthread_cond_t PTHREAD_COND_INITIALIZER
+- pthread_mutex_t PTHREAD_MUTEX_INITIALIZER
+- pthread_rwlock_t PTHREAD_RWLOCK_INITIALIZER
+
+- int pthread_create(pthread_t *restrict, const pthread_attr_t *restrict, void *(*)(void*), void *restrict);
+  - thread: pointer to an unsigned integer value that returns the thread id of the thread created.
+  - attr: pointer to a structure that is used to define thread attributes like detached state, scheduling policy, stack address, etc. Set to NULL for default thread attributes.
+  - start_routine: pointer to a subroutine that is executed by the thread. The return type and parameter type of the subroutine must be of type void *. The function has a single attribute but if multiple values need to be passed to the function, a struct must be used.
+  - arg: pointer to void that contains the arguments to the function defined in the earlier argument
+
+- int pthread_join(pthread_t, void **);
+- pthread_mutex_lock(pthread_mutex_t *);
+- pthread_mutex_unlock(pthread_mutex_t *);
+- pthread_exit(void *);
+  - This method accepts a mandatory parameter retval which is the pointer to an integer that stores the return status of the thread terminated. The scope of this variable must be global so that any thread waiting to join this thread may read the return status.
+
+## Structs
 
 ```c
-
+//         name is optional
 typedef struct name {
   int n;
   char *str;
 } Identifer;
 ```
 
-### types
+## types
 
 | Data Type              | Memory (bytes) | Range                           | Format Specifier |
 | ---------------------- | -------------- | ------------------------------- | ---------------- |
