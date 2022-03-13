@@ -597,9 +597,29 @@ Technical Debt Ratio = (Remediation Cost / Development Cost) x 100%
 
 ## Robust Equivalence-Class Testing
 
+> Advangtages
+- helps reduce the number of test cases, without compromising the test coverage.
+- reduces the overall test execution time as it minimizes the set of test data.
+- enables the testers to focus on small data sets, which increases the probability of uncovering more defects in the software product.
+- used in cases where performing exhuastive testing is difficult.
+
+> Disadvantages
+- it does not consider the conditions for boundary value
+- the identification of equivalence classes relies heavily on the expertise of testers.
+- testers might assume that the output for all input data is correct, which can become a great hurdle in testing.
+
 ## All-Uses Coverage Criterion
 
-## equivalence class testing
+## Equivalence Class Testing
+
+https://www.geeksforgeeks.org/equivalence-class-testing-next-date-problem/
+
+>The equivalence class testing can be categorized into four different types, which are integral part of testing and cater to different data set. These types of equivalence class testing are:
+
+- Weak Normal Equivalence Class Testing: In this first type of equivalence class testing, one variable from each equivalence class is tested by the team. Moreover, the values are identified in a systematic manner. Weak normal equivalence class testing is also known as single fault assumption.
+- Strong Normal Equivalence Class Testing: Termed as multiple fault assumption, in strong normal equivalence class testing the team selects test cases from each element of the Cartesian product of the equivalence. This ensures the notion of completeness in testing, as it covers all equivalence classes and offers the team one of each possible combinations of inputs.
+- Weak Robust Equivalence Class Testing: Like weak normal equivalence, weak robust testing too tests one variable from each equivalence class. However, unlike the former method, it is also focused on testing test cases for invalid values.
+- Strong Robust Equivalence Class Testing: Another type of equivalence class testing, strong robust testing produces test cases for all valid and invalid elements of the product of the equivalence class. However, it is incapable of reducing the redundancy in testing.
 
 ## minimum number of required test cases
 1) Weak normal equivalence class testing
@@ -610,15 +630,64 @@ Technical Debt Ratio = (Remediation Cost / Development Cost) x 100%
 ## classification tree & decision table
 
 ## control-flow graph
+https://www.geeksforgeeks.org/software-engineering-control-flow-graph-cfg/
+
 
 ## Calculate all prime paths of the control-flow graph
 
 ## A/B testing
+> A/B testing, also known as split testing, refers to a randomized experimentation process wherein two or more versions of a variable (web page, page element, etc.) are shown to different segments of website visitors at the same time to determine which version leaves the maximum impact and drive business metrics.
 
 ## mutation testing
+
+>
+### Goals
+
+> The goals of mutation testing are multiple:
+
+identify weakly tested pieces of code (those for which mutants are not killed)
+identify weak tests (those that never kill mutants)
+compute the mutation score, the mutation score is the number of mutants killed / total number of mutants.
+learn about error propagation and state infection in the program
+
+### operators
+
+Many mutation operators have been explored by researchers. Here are some examples of mutation operators for imperative languages:
+
+- Statement deletion
+- Statement duplication or insertion, e.g. goto fail;
+- Replacement of boolean subexpressions with true and false
+- Replacement of some arithmetic operations with others, e.g. + with *, - with /
+- Replacement of some boolean relations with others, e.g. > with >=, == and <=
+- Replacement of variables with others from the same scope (variable types must be compatible)
+- Remove method body, implemented in Pitest
+
 - Relational operator replacement (ror)
 - Arithmetic operator replacement (aor)
 - Constant for constant replacement (crp)
+
+### types of mutatants
+
+• “First-Order Mutants” (our focus)
+  • One line modified.
+  • Easy to create, many tools to insert them.
+  • Most common, but not as realistic.
+• “Higher-Order Mutants”
+  • Multiple lines modified.
+  • Harder to create, not well understood.
+  • May be more realistic.
+
+### Mutant Quality
+
+To be used in testing, mutants must be:
+• Syntactically correct (valid)
+  • Mutants must compile and execute.
+• Plausible (useful)
+  • Must provide valuable information on how the system works for testers working to improve the system.
+• A mutant can be valid, but not useful.
+  • All or almost all tests fail.
+
+
 ## concept of capture and recapture, used in code inspections.
 
 ## test-driven development process.
