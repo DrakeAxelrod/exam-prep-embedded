@@ -614,10 +614,11 @@ Technical Debt Ratio = (Remediation Cost / Development Cost) x 100%
   - Requires each DU pair be exercised in at least one program execution.
   - Cover any path between a definition and its use
 
-  ```
-  Coverage = number_exercised_DU_pairs / number_of_DU_pairs
-  ```
+  > Coverage = number_exercised_DU_pairs / number_of_DU_pairs
+
   - Can easily achieve structural coverage without covering all DU pairs.
+
+<img src="./media/ex_du_pairs.png"></img>
 
 ### example
 ```java
@@ -656,7 +657,23 @@ public int doSomething(int x, int y)
 
 - All DU Paths Coverage
 
-- All  Definitions Coverage
+  - A use may be reachable along several paths from the definition. 
+  - Cover all simple (non-looping) paths at least once.
+  - Can reveal faults where a path is exercised that should use a certain definition but doesn’t. 
+
+> Coverage = number_of_exercised_DU_paths / number_of_DU_paths
+
+<img src="./media/2022-03-15_19-18.png"></img>
+<img src="./media/2022-03-15_19-19_1.png"></img>
+
+- All Definitions Coverage
+  - All DU Pairs/All DU Paths may be too expensive in some situations.
+  - Pair each definition with at least one use.
+  - Skips many DU pairs, but ensures each definition tried.
+
+> Coverage = number_of_covered_definitions / number_of_definitions
+
+<img src="./media/2022-03-15_19-29.png"></img>
 
 > Varying power and cost.
 
@@ -664,7 +681,7 @@ public int doSomething(int x, int y)
 
 https://www.geeksforgeeks.org/equivalence-class-testing-next-date-problem/
 
->The equivalence class testing can be categorized into four different types, which are integral part of testing and cater to different data set. These types of equivalence class testing are:
+> The equivalence class testing can be categorized into four different types, which are integral part of testing and cater to different data set. These types of equivalence class testing are:
 
 - Weak Normal Equivalence Class Testing: In this first type of equivalence class testing, one variable from each equivalence class is tested by the team. Moreover, the values are identified in a systematic manner. Weak normal equivalence class testing is also known as single fault assumption.
 - Strong Normal Equivalence Class Testing: Termed as multiple fault assumption, in strong normal equivalence class testing the team selects test cases from each element of the Cartesian product of the equivalence. This ensures the notion of completeness in testing, as it covers all equivalence classes and offers the team one of each possible combinations of inputs.
@@ -679,13 +696,18 @@ https://www.geeksforgeeks.org/equivalence-class-testing-next-date-problem/
 
 ## classification tree & decision table
 
+<h1 style="color:red;">TODO</h1>
+
 ## control-flow graph
 https://www.geeksforgeeks.org/software-engineering-control-flow-graph-cfg/
 
 
 ## Calculate all prime paths of the control-flow graph
 
+<h1 style="color:red;">TODO</h1>
+
 ## A/B testing
+
 > A/B testing, also known as split testing, refers to a randomized experimentation process wherein two or more versions of a variable (web page, page element, etc.) are shown to different segments of website visitors at the same time to determine which version leaves the maximum impact and drive business metrics.
 
 ## mutation testing
@@ -743,27 +765,51 @@ https://www.youtube.com/watch?v=0lVA7TPpxUE
 
 ## concept of capture and recapture, used in code inspections.
 
+<h1 style="color:red;">TODO</h1>
+
 ## test-driven development process.
+
+<h1 style="color:red;">TODO</h1>
 
 ## strengthes & weaknesses of test-driven development.
 
+<h1 style="color:red;">TODO</h1>
+
 ## goal-question-metric approach
+
+<h1 style="color:red;">TODO</h1>
 
 ## GQM-graph
 
+<h1 style="color:red;">TODO</h1>
+
 ## inspection procedure according to Fagan (1976)
+
+<h1 style="color:red;">TODO</h1>
 
 ## DU pairs
 
+<h1 style="color:red;">TODO</h1>
+
 ## Quality Scenarios
+
+<h1 style="color:red;">TODO</h1>
 
 ## Structural Testing
 
+<h1 style="color:red;">TODO</h1>
+
 ## Data Flow Testing
+
+<h1 style="color:red;">TODO</h1>
 
 ## random ascent
 
+<h1 style="color:red;">TODO</h1>
+
 # unit testing, system testing, GUI testing, exploratory testing, or acceptance testing
+
+<h1 style="color:red;">TODO</h1>
 
 ## Finite State Verification
 Temporal Operators: A quick reference list.
@@ -776,9 +822,15 @@ Temporal Operators: A quick reference list.
 
 ## random ascent
 
+<h1 style="color:red;">TODO</h1>
+
 ## ++Coverage (MC, DC, DU...)
 
+<h1 style="color:red;">TODO</h1>
+
 ## ++Quality equations (POF, ROF, MTBF...)
+
+<h1 style="color:red;">TODO</h1>
 
 ## Finite state verification
     +Safety properties - LTL/CTL 
