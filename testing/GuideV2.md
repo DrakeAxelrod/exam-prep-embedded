@@ -324,7 +324,6 @@ P = the number of connected components
 ```
 
 #### Use of Cyclomatic Complexity: 
- 
 
     Determining the independent path executions thus proven to be very helpful for Developers and Testers.
     It can make sure that every path have been tested at least once.
@@ -534,8 +533,7 @@ option icons, disc icons.
 
 > Windows Phone
 - Search for contact
-- Loaded > 4000 contacts. While searching, they changed the
-search string.
+- Loaded > 4000 contacts. While searching, they changed the search string.
 - Changed filter clashed with original filter, incorrect results.
 - Bluetooth Connection
 - If focus shifts while connecting to device, can try to connect again
@@ -582,6 +580,8 @@ search string.
 
 ## Confirming a theory
 
+measurement data can be useful for confirming a theory.
+
 ## Complexity and Technical Debt
 
 If you simply consider brute-force algorithms and their computational complexities (mostly intuitive, straightforward, easy, and obvious) in comparison to their more efficient and advanced counterparts (less intuitive and obvious) it should be easy to see the dilemma in building software. Oftentimes the most efficient way of building a software system isn’t the most intuitive or obvious choice.
@@ -609,6 +609,56 @@ Technical Debt Ratio = (Remediation Cost / Development Cost) x 100%
 - testers might assume that the output for all input data is correct, which can become a great hurdle in testing.
 
 ## All-Uses Coverage Criterion
+
+- All DU Pair Coverage
+  - Requires each DU pair be exercised in at least one program execution.
+  - Cover any path between a definition and its use
+
+  ```
+  Coverage = number_exercised_DU_pairs / number_of_DU_pairs
+  ```
+  - Can easily achieve structural coverage without covering all DU pairs.
+
+### example
+```java
+public int doSomething(int x, int y) 
+{
+  while(y > 0) {
+  if(x > 0)
+  { 
+    y = y - x;
+    if (y > 0) 
+    System.out.println(“Y: “ + y);
+  }
+  else
+  {
+    x = x + 1;
+    if (x <= 0)
+    {
+      System.out.println(X: “ + x);
+    }
+  }
+  return x + y;
+}
+
+/*
+
+  X: 
+  (1, 4), (1, 5), (1, 9), (1, 14)
+  (9, 10), (9, 11), (9, 5), (9, 9), (9, 14)
+
+  Y:
+  (1, 3), (1, 5), (1, 14)
+  (5, 6), (5, 7), (5, 3), (5, 5), (5, 14)
+
+*/
+```
+
+- All DU Paths Coverage
+
+- All  Definitions Coverage
+
+> Varying power and cost.
 
 ## Equivalence Class Testing
 
