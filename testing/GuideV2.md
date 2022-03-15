@@ -687,6 +687,9 @@ To be used in testing, mutants must be:
 • A mutant can be valid, but not useful.
   • All or almost all tests fail.
 
+# Control Flow Graph
+https://www.youtube.com/watch?v=0lVA7TPpxUE
+
 
 ## concept of capture and recapture, used in code inspections.
 
@@ -721,4 +724,12 @@ Temporal Operators: A quick reference list.
 ● A: for all paths from a state, used in CTL as a modifier for the above properties (for example, AG p)
 ● E: for some path from a state, used in CTL as a modifier for the above properties (for example, EF p)
 
+## random ascent
 
+## ++Coverage (MC, DC, DU...)
+
+## ++Quality equations (POF, ROF, MTBF...)
+
+## Finite state verification
+    +Safety properties - LTL/CTL 
+    +Liveness properties - LTL/CTL
