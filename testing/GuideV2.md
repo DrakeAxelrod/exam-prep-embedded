@@ -364,6 +364,42 @@ Same way, a tester will know the application better only while exploring and lea
 
 > Features split into “districts” based on type and how we test. Business = core functionality, Seedy = security aspects, “Tours” related to each district. Each prescribes a way of exploring the software.
 
+> All-Nighter Tour
+
+On the All-Nighter tour, we keep our application running without closing it. For example, we open browser tabs and don’t close them. We may connect to remote resources and never disconnect. This may reveal bugs like memory leaks or high CPU usage over time.
+
+Issues revealed:
+performance issues (memory leaks, bad responsiveness etc.)
+data loss
+
+inability to restore working state after being suspended for some time
+
+> Seedy District
+
+These are unattractive places that a rare guide will tell you about. They are full of scammers and suspicious people, and it is best to bypass them.
+
+In testing, it is such software areas that attract shifty users who strive to crash the system.
+
+> Antisocial Tour
+
+The Antisocial tour requires entering either the least likely inputs or known bad inputs. A tester on the Antisocial tour should find a much less meaningful input than expected from the user.
+
+Issues revealed:
+
+crashes and other functional issues
+
+security vulnerabilities
+
+non-user-friendly error messages, unhandled exceptions (messages with stack trace)
+
+usability issues
+
+Obsessive-Compulsive Tour
+
+Testers will enter the same input over and over. They will perform the same action over and over.  Mostly, it’s about repetition. For example, order an item on a shopping site and then order it again to check if a multiple purchase discount applies.
+
+Issues revealed can be various, but usually, they are non-critical functional or performance ones.
+
 > Business District
 - Most important features.
 - The functionality that will get users to buy software.
@@ -811,14 +847,17 @@ https://www.youtube.com/watch?v=0lVA7TPpxUE
 
 <h1 style="color:red;">TODO</h1>
 
+
+
+
 ## Finite State Verification
 Temporal Operators: A quick reference list.
-● G p: p holds globally at every state on the path
-● F p: p holds at some state on the path
-● X p: p holds at the next (second) state on the path
-● p U q: q holds at some state on the path and p holds at every state before the first state at which q holds.
-● A: for all paths from a state, used in CTL as a modifier for the above properties (for example, AG p)
-● E: for some path from a state, used in CTL as a modifier for the above properties (for example, EF p)
+- G p: p holds globally at every state on the path
+- F p: p holds at some state on the path
+- X p: p holds at the next (second) state on the path
+- p U q: q holds at some state on the path and p holds at every state before the first state at which q holds.
+- A: for all paths from a state, used in CTL as a modifier for the above properties (for example, AG p)
+- E: for some path from a state, used in CTL as a modifier for the above properties (for example, EF p)
 
 ## random ascent
 
@@ -835,3 +874,21 @@ Temporal Operators: A quick reference list.
 ## Finite state verification
     +Safety properties - LTL/CTL 
     +Liveness properties - LTL/CTL
+
+## Functional Testing
+
+FUNCTIONAL TESTING is a type of software testing that validates the software system against the functional requirements/specifications. The purpose of Functional tests is to test each function of the software application, by providing appropriate input, verifying the output against the Functional requirements.
+
+Functional testing mainly involves black box testing and it is not concerned about the source code of the application. This testing checks User Interface, APIs, Database, Security, Client/Server communication and other functionality of the Application Under Test. The testing can be done either manually or using automation.
+What do you test in Functional Testing?
+
+The prime objective of Functional testing is checking the functionalities of the software system. It mainly concentrates on –
+
+    Mainline functions:  Testing the main functions of an application
+    Basic Usability: It involves basic usability testing of the system. It checks whether a user can freely navigate through the screens without any difficulties.
+    Accessibility:  Checks the accessibility of the system for the user
+    Error Conditions: Usage of testing techniques to check for error conditions.  It checks whether suitable error messages are displayed.
+
+## structural vs functional testing
+
+Difference Between Structural and Functional Testing: Structural and functional testing is a form of testing performed to evaluate the response of software & computer hardware to various stimuli. In Structural Testing, software application functionality is verified by performing tests that exercise each individual module in isolation. Each module can be tested independently. In Functional Testing, it is verified by performing tests that exercise specified combinations of related modules. It is performed to verify whether the software meets the expected requirements and to detect functional errors.
